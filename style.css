@@ -1,0 +1,34 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: rgb(174, 222, 244);
+}
+
+hr{
+  width: 500px;
+  height: 3px;
+  background-color: black;
+}
+#board {
+  width: 450px;
+  height: 450px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tile{
+  width: 147px;
+  font-size: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizontal-line {
+border-bottom: 3px solid black;
+}
+.vertical-line {
+  border-right: 3px solid black;
+}
+

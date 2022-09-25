@@ -37,5 +37,17 @@ function setTile () {
   let coords = this.id.split('-')
   let r = parseInt(coords[0])
   let c = parseInt(coords[1])
+
+  if (board[r][c] !== ' ') {
+    return
+  }
   board[r][c] = currPlayer
+  this.innerText = currPlayer
+
+  if (currPlayer === playerO) {
+    currPlayer = playerX
+  }
+  else {
+    currPlayer = playerO
+  }
 }

@@ -8,12 +8,31 @@
     <title>TicTacToe</title>
 </head>
 <body>
+   <div class="main">
+    <div id="gameScore">
+        <p class="score">Game score:</p>
+        <!-- <p class="score" id="total">Total games:</p> -->
+        <p class="score" id="xWin">X-Wins: 0</p>
+        <p class="score" id="xWin">O-Wins: 0</p>
+    </div>
+    <div class="game">
        <h1 class="title">TIC TAC TOE</h1>
-       <hr>
-       <br>
-    <div id="board"></div>
-    <button id="reset">Restart Game</button>
-    <script src="script.js"></script>
+       <h2 id="status">Player X turn</h2>
+       <div class="grid-container">
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+      </div>
+      <button class='restart'>Play again</button>
+    </div>
+   </div> 
+   <script src="script.js"></script>
 </body>
 
 </html>

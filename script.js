@@ -16,7 +16,7 @@ const win6 = [0, 3, 6]
 const win7 = [1, 4, 7]
 const win8 = [2, 5, 8]
 
-const playGame = cells.forEach((cell, index) => {
+cells.forEach((cell, index) => {
   cell.addEventListener('click', () => {
     if (message.innerHTML === 'Player X turn' || message.innerHTML === 'Player O turn') {
       handleClick(index)
@@ -53,6 +53,7 @@ function togglePlayer () {
     message.innerHTML = 'Player O turn'
   }
 }
+
 function containsAll (condition, moves) {
   return condition.every(i => moves.includes(i))
 }
@@ -67,7 +68,7 @@ function tie () {
 function getEmptyCells () {
   cells.forEach((cell) => {
     if (cell.innerHTML === '') {
-      cell.classList.add('emptyCells', 'noHover')
+      cell.classList.add('noHover')
     }
   })
 }
@@ -99,21 +100,51 @@ function restartGame () {
   message.classList.remove('win-text')
   cells.forEach((cell) => {
     cell.innerHTML = ''
-    cell.classList.remove('noHover', 'emptyCells')
+    cell.classList.remove('noHover')
   })
 }
 const xWon = document.getElementById('xWin')
-const oWon = document.getElementById('0Win')
-
+const oWon = document.getElementById('oWin')
+const totalScore = document.getElementById('total')
+let xWin = 0
+let oWin = 0
+let total = 0
 function recordWin () {
-  let xWin = 0
-  let oWin = 0
+  total = xWin + oWin
   if (message.innerHTML === 'X player won') {
-    xWin++
+    xWin = xWin + 1
+    total++
     xWon.innerHTML = `X-Wins: ${xWin}`
-  } if (message.innerHTML === 'X player won') {
-    oWin++
+    totalScore.innerHTML = `Games played : ${total}`
+  } if (message.innerHTML === 'O player won') {
+    oWin = oWin + 1
+    total++
     oWon.innerHTML = `O-Wins: ${oWin}`
+    totalScore.innerHTML = `Games played ${total}`
+  } else if (message.innerHTML === 'This game is a tie') {
+    total++
+    totalScore.innerHTML = `Games played ${total}`
   }
+  request({ total, xWin, oWin })
 }
-playGame()
+const request = (data) => {
+  fetch('http://localhost:3000/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(data => {
+      console.log('Success:', data)
+    })
+    .catch((error) => {
+      console.error('Error:', error)
+    })
+}
+fetch('http://localhost:3000/gameData').then(res => res.json())
+  .then(data => {
+    total = data.total
+    xWin = data.xWin
+    oWin = data.oWin
+  })

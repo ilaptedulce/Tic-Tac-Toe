@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>TicTacToe</title>
 </head>
@@ -11,13 +12,14 @@
    <div class="main">
     <div id="gameScore">
         <p class="score">Game score:</p>
-        <!-- <p class="score" id="total">Total games:</p> -->
+        <p class="score" id="total">Total games:</p>
         <p class="score" id="xWin">X-Wins: 0</p>
-        <p class="score" id="xWin">O-Wins: 0</p>
+        <p class="score" id="oWin">O-Wins: 0</p>
     </div>
     <div class="game">
        <h1 class="title">TIC TAC TOE</h1>
        <h2 id="status">Player X turn</h2>
+       <h2></h2>
        <div class="grid-container">
         <div class="grid-item"></div>
         <div class="grid-item"></div>
@@ -29,7 +31,7 @@
         <div class="grid-item"></div>
         <div class="grid-item"></div>
       </div>
-      <button class='restart'>Play again</button>
+      <button class='restart'>Restart</button>
     </div>
    </div> 
    <script src="script.js"></script>

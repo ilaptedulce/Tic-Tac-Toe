@@ -78,12 +78,14 @@ function checkWin () {
     containsAll(win4, xGameMoves) || containsAll(win5, xGameMoves) || containsAll(win6, xGameMoves) ||
     containsAll(win7, xGameMoves) || containsAll(win8, xGameMoves)) {
     message.innerHTML = 'X player won'
+    xWin += 1
     getEmptyCells()
     message.classList.add('win-text')
   } else if (containsAll(win1, oGameMoves) || containsAll(win2, oGameMoves) || containsAll(win3, oGameMoves) ||
     containsAll(win4, oGameMoves) || containsAll(win5, oGameMoves) || containsAll(win6, oGameMoves) ||
     containsAll(win7, oGameMoves) || containsAll(win8, oGameMoves)) {
     message.innerHTML = 'O player won'
+    oWin += 1
     getEmptyCells()
     message.classList.add('win-text')
   } else {
@@ -109,22 +111,18 @@ const totalScore = document.getElementById('total')
 let xWin = 0
 let oWin = 0
 let total = 0
-function recordWin () {
-  total = xWin + oWin
+const displayScore = ({ total, xWin, oWin }) => {
   if (message.innerHTML === 'X player won') {
-    xWin = xWin + 1
-    total++
     xWon.innerHTML = `X-Wins: ${xWin}`
-    totalScore.innerHTML = `Games played : ${total}`
-  } if (message.innerHTML === 'O player won') {
-    oWin = oWin + 1
-    total++
-    oWon.innerHTML = `O-Wins: ${oWin}`
-    totalScore.innerHTML = `Games played ${total}`
-  } else if (message.innerHTML === 'This game is a tie') {
-    total++
-    totalScore.innerHTML = `Games played ${total}`
   }
+  if (message.innerHTML === 'O player won') {
+    oWon.innerHTML = `O-Wins: ${oWin}`
+  }
+  totalScore.innerHTML = `Games played ${total}`
+}
+function recordWin () {
+  total += 1
+  displayScore({ total, xWin, oWin })
   request({ total, xWin, oWin })
 }
 const request = (data) => {
